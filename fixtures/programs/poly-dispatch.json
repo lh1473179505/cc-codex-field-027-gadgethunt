@@ -1,0 +1,135 @@
+{
+  "classes": [
+    {
+      "name": "Proc",
+      "bases": [],
+      "fields": {},
+      "methods": [
+        {
+          "name": "system",
+          "params": [
+            "cmd"
+          ],
+          "body": []
+        }
+      ],
+      "magic": {}
+    },
+    {
+      "name": "File",
+      "bases": [],
+      "fields": {},
+      "methods": [
+        {
+          "name": "write",
+          "params": [
+            "path",
+            "data"
+          ],
+          "body": []
+        }
+      ],
+      "magic": {}
+    },
+    {
+      "name": "Handler",
+      "bases": [],
+      "fields": {},
+      "methods": [
+        {
+          "name": "handle",
+          "params": [
+            "arg"
+          ],
+          "body": [
+            {
+              "op": "return",
+              "args": [
+                "arg"
+              ]
+            }
+          ]
+        }
+      ],
+      "magic": {}
+    },
+    {
+      "name": "EvilHandler",
+      "bases": [
+        "Handler"
+      ],
+      "fields": {},
+      "methods": [
+        {
+          "name": "handle",
+          "params": [
+            "arg"
+          ],
+          "body": [
+            {
+              "op": "new",
+              "args": [
+                "p",
+                "Proc"
+              ]
+            },
+            {
+              "op": "call",
+              "args": [
+                "r",
+                "p",
+                "system",
+                "arg"
+              ]
+            },
+            {
+              "op": "return",
+              "args": [
+                "r"
+              ]
+            }
+          ]
+        }
+      ],
+      "magic": {}
+    },
+    {
+      "name": "Decoder",
+      "bases": [],
+      "fields": {},
+      "methods": [
+        {
+          "name": "from_stream",
+          "params": [
+            "src"
+          ],
+          "body": [
+            {
+              "op": "new",
+              "args": [
+                "h",
+                "EvilHandler"
+              ]
+            },
+            {
+              "op": "call",
+              "args": [
+                "r",
+                "h",
+                "handle",
+                "src"
+              ]
+            },
+            {
+              "op": "return",
+              "args": [
+                "r"
+              ]
+            }
+          ]
+        }
+      ],
+      "magic": {}
+    }
+  ]
+}

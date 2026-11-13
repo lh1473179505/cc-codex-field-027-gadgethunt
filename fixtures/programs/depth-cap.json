@@ -1,0 +1,187 @@
+{
+  "classes": [
+    {
+      "name": "Proc",
+      "bases": [],
+      "fields": {},
+      "methods": [
+        {
+          "name": "system",
+          "params": [
+            "cmd"
+          ],
+          "body": []
+        }
+      ],
+      "magic": {}
+    },
+    {
+      "name": "File",
+      "bases": [],
+      "fields": {},
+      "methods": [
+        {
+          "name": "write",
+          "params": [
+            "path",
+            "data"
+          ],
+          "body": []
+        }
+      ],
+      "magic": {}
+    },
+    {
+      "name": "A",
+      "bases": [],
+      "fields": {},
+      "methods": [
+        {
+          "name": "go",
+          "params": [
+            "x"
+          ],
+          "body": [
+            {
+              "op": "new",
+              "args": [
+                "b",
+                "B"
+              ]
+            },
+            {
+              "op": "call",
+              "args": [
+                "r",
+                "b",
+                "go",
+                "x"
+              ]
+            },
+            {
+              "op": "return",
+              "args": [
+                "r"
+              ]
+            }
+          ]
+        }
+      ],
+      "magic": {}
+    },
+    {
+      "name": "B",
+      "bases": [],
+      "fields": {},
+      "methods": [
+        {
+          "name": "go",
+          "params": [
+            "x"
+          ],
+          "body": [
+            {
+              "op": "new",
+              "args": [
+                "c",
+                "C"
+              ]
+            },
+            {
+              "op": "call",
+              "args": [
+                "r",
+                "c",
+                "go",
+                "x"
+              ]
+            },
+            {
+              "op": "return",
+              "args": [
+                "r"
+              ]
+            }
+          ]
+        }
+      ],
+      "magic": {}
+    },
+    {
+      "name": "C",
+      "bases": [],
+      "fields": {},
+      "methods": [
+        {
+          "name": "go",
+          "params": [
+            "x"
+          ],
+          "body": [
+            {
+              "op": "new",
+              "args": [
+                "p",
+                "Proc"
+              ]
+            },
+            {
+              "op": "call",
+              "args": [
+                "r",
+                "p",
+                "system",
+                "x"
+              ]
+            },
+            {
+              "op": "return",
+              "args": [
+                "r"
+              ]
+            }
+          ]
+        }
+      ],
+      "magic": {}
+    },
+    {
+      "name": "Decoder",
+      "bases": [],
+      "fields": {},
+      "methods": [
+        {
+          "name": "from_stream",
+          "params": [
+            "src"
+          ],
+          "body": [
+            {
+              "op": "new",
+              "args": [
+                "a",
+                "A"
+              ]
+            },
+            {
+              "op": "call",
+              "args": [
+                "r",
+                "a",
+                "go",
+                "src"
+              ]
+            },
+            {
+              "op": "return",
+              "args": [
+                "r"
+              ]
+            }
+          ]
+        }
+      ],
+      "magic": {}
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "sources": [
+    {
+      "class": "Decoder",
+      "method": "from_stream"
+    }
+  ],
+  "sinks": [
+    {
+      "class": "Proc",
+      "method": "system",
+      "kind": "cmd",
+      "tainted": "args"
+    },
+    {
+      "class": "File",
+      "method": "write",
+      "kind": "path",
+      "tainted": "args"
+    }
+  ],
+  "static_methods": [],
+  "max_depth": 3,
+  "max_chains": 16
+}

@@ -1,0 +1,151 @@
+{
+  "classes": [
+    {
+      "name": "Proc",
+      "bases": [],
+      "fields": {},
+      "methods": [
+        {
+          "name": "system",
+          "params": [
+            "cmd"
+          ],
+          "body": []
+        }
+      ],
+      "magic": {}
+    },
+    {
+      "name": "File",
+      "bases": [],
+      "fields": {},
+      "methods": [
+        {
+          "name": "write",
+          "params": [
+            "path",
+            "data"
+          ],
+          "body": []
+        }
+      ],
+      "magic": {}
+    },
+    {
+      "name": "Holder",
+      "bases": [],
+      "fields": {
+        "path": "str"
+      },
+      "methods": [
+        {
+          "name": "set_path",
+          "params": [
+            "p"
+          ],
+          "body": [
+            {
+              "op": "store_field",
+              "args": [
+                "self",
+                "path",
+                "p"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "flush",
+          "params": [],
+          "body": [
+            {
+              "op": "load_field",
+              "args": [
+                "p",
+                "self",
+                "path"
+              ]
+            },
+            {
+              "op": "new",
+              "args": [
+                "f",
+                "File"
+              ]
+            },
+            {
+              "op": "const",
+              "args": [
+                "d",
+                "x"
+              ]
+            },
+            {
+              "op": "call",
+              "args": [
+                "r",
+                "f",
+                "write",
+                "p",
+                "d"
+              ]
+            },
+            {
+              "op": "return",
+              "args": [
+                "r"
+              ]
+            }
+          ]
+        }
+      ],
+      "magic": {}
+    },
+    {
+      "name": "Decoder",
+      "bases": [],
+      "fields": {},
+      "methods": [
+        {
+          "name": "from_stream",
+          "params": [
+            "src"
+          ],
+          "body": [
+            {
+              "op": "new",
+              "args": [
+                "h",
+                "Holder"
+              ]
+            },
+            {
+              "op": "call",
+              "args": [
+                "_",
+                "h",
+                "set_path",
+                "src"
+              ]
+            },
+            {
+              "op": "call",
+              "args": [
+                "r",
+                "h",
+                "flush"
+              ]
+            },
+            {
+              "op": "return",
+              "args": [
+                "r"
+              ]
+            }
+          ]
+        }
+      ],
+      "magic": {}
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "classes": [
+    {
+      "name": "Proc",
+      "bases": [],
+      "fields": {},
+      "methods": [
+        {
+          "name": "system",
+          "params": [
+            "cmd"
+          ],
+          "body": []
+        }
+      ],
+      "magic": {}
+    },
+    {
+      "name": "File",
+      "bases": [],
+      "fields": {},
+      "methods": [
+        {
+          "name": "write",
+          "params": [
+            "path",
+            "data"
+          ],
+          "body": []
+        }
+      ],
+      "magic": {}
+    },
+    {
+      "name": "Decoder",
+      "bases": [],
+      "fields": {},
+      "methods": [
+        {
+          "name": "from_stream",
+          "params": [
+            "src"
+          ],
+          "body": [
+            {
+              "op": "new",
+              "args": [
+                "p",
+                "Proc"
+              ]
+            },
+            {
+              "op": "call",
+              "args": [
+                "r",
+                "p",
+                "system",
+                "src"
+              ]
+            },
+            {
+              "op": "return",
+              "args": [
+                "r"
+              ]
+            }
+          ]
+        }
+      ],
+      "magic": {}
+    }
+  ]
+}
